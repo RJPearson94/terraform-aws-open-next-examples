@@ -5,6 +5,7 @@ This repo contains example Terraform/ Terragrunt configurations to deploy a sing
 This utilises the following module to deploy the Next.js website to AWS
 
 [Github Repo](https://github.com/RJPearson94/terraform-aws-open-next)
+
 [Terraform Registry](https://registry.terraform.io/modules/RJPearson94/open-next/aws/latest)
 
 See the module documentation for more information on the limitations, inputs, outputs, etc.
