@@ -68,6 +68,11 @@ provider "aws" {
 provider "aws" {
   alias = "dns"
 }
+
+provider "aws" {
+  alias  = "global"
+  region = "us-east-1"
+}
 ```
 
 Once the artifacts have been built they can be deployed using Terraform & Terragrunt. First, you need to download the providers and module, you can do this by running the following command:
