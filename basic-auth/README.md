@@ -1,6 +1,10 @@
-# Single-zone example
+# Basic Auth example
 
-This example shows how you can deploy a single next.js app to AWS using open next
+This example shows how you can deploy a single next.js app to AWS that uses AWS WAF to provide basic auth protection for the website
+
+This is inspired by Vercel's password-protected deployment feature - https://vercel.com/guides/how-do-i-add-password-protection-to-my-vercel-deployment
+
+Credit to Shinji Nakamatu for this idea - https://dev.to/snaka/implementing-secure-access-control-using-aws-waf-with-ip-address-and-basic-authentication-45hn
 
 ## Building the example
 
@@ -24,6 +28,7 @@ To deploy the examples to AWS, you will need the following
 - An AWS Account
 - [Terragrunt](https://terragrunt.gruntwork.io/) v0.45.14 or above
 - [Terraform](https://terragrunt.gruntwork.io/) v1.4.0 or above
+- `credentials.yaml` file with the username and password set. See the [credentials template](./credentials.tpl.yaml) for the details
 
 To configure the AWS providers see the [provider documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication-and-configuration). 
 

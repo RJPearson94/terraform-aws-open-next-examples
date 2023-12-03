@@ -1,6 +1,6 @@
-# Single-zone example
+# Multi-zone example
 
-This example shows how you can deploy a single next.js app to AWS using open next
+This example shows how you can deploy multiple zones to AWS using the same shared distribution
 
 ## Building the example
 
@@ -11,6 +11,11 @@ To be able to deploy the examples, you will need to install the dependencies and
 Please run the following commands
 
 ```shell
+cd ./docs
+yarn install
+yarn build:open-next
+...
+cd ../home
 yarn install
 yarn build:open-next
 ```
@@ -24,6 +29,7 @@ To deploy the examples to AWS, you will need the following
 - An AWS Account
 - [Terragrunt](https://terragrunt.gruntwork.io/) v0.45.14 or above
 - [Terraform](https://terragrunt.gruntwork.io/) v1.4.0 or above
+- `credentials.yaml` file with the username and password set. See the [credentials template](./credentials.tpl.yaml) for the details
 
 To configure the AWS providers see the [provider documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication-and-configuration). 
 

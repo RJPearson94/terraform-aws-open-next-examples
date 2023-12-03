@@ -1,34 +1,108 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Single-zone example
 
-## Getting Started
+This example shows how you can deploy a single next.js app to AWS using open next using the legacy module
 
-First, run the development server:
+## Building the example
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+To be able to deploy the examples, you will need to install the dependencies and build the websites using open-next. 
+
+**NOTE:** You will need node 18 or above installed to build the applications
+
+Please run the following commands
+
+```shell
+yarn install
+yarn build:open-next
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deploying the examples
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**NOTE:** Deploying an example could cause you to start incurring charges on you AWS account
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+To deploy the examples to AWS, you will need the following
 
-## Learn More
+- An AWS Account
+- [Terragrunt](https://terragrunt.gruntwork.io/) v0.45.14 or above
+- [Terraform](https://terragrunt.gruntwork.io/) v1.4.0 or above
 
-To learn more about Next.js, take a look at the following resources:
+To configure the AWS providers see the [provider documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication-and-configuration). 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+You will need to configure the AWS providers 4 times, this is due to some orgs using different account or roles for IAM, DNS, etc. The server function is a seperate provider to allow you backend resources to be deployed to a region i.e. eu-west-1 and deploy the server function to another region i.e. us-east-1 for lambda@edge.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+An example setup can be seen below
 
-## Deploy to AWS
+```tf
+provider "aws" {
+  
+}
 
-This application can be deployed to AWS using [Terraform](https://www.terraform.io/).
+provider "aws" {
+  alias = "server_function"
+}
 
-The Terraform code and instructions on how to deploy the application can be found in the [infrastructure](./infrastructure/) folder.
+provider "aws" {
+  alias = "iam"
+}
+
+provider "aws" {
+  alias = "dns"
+}
+
+provider "aws" {
+  alias  = "global"
+  region = "us-east-1"
+}
+```
+
+Once the artifacts have been built they can be deployed using Terraform & Terragrunt. First, you need to download the providers and module, you can do this by running the following command:
+
+```shell
+terragrunt init
+```
+
+To see what changes will be made, you can run the following command:
+
+```shell
+terragrunt plan
+```
+
+To deploy the website, you can run the following command:
+
+```shell
+terragrunt apply
+```
+
+When you see the following
+
+```
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value:
+```
+
+type `yes` and hit the return/ enter key. 
+
+
+## Destroying the example
+
+Once you are finished with the resources you can remove all the provisioned resources by running the following command:
+
+```shell
+terragrunt destroy
+```
+
+When you see the following
+
+```
+Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value:
+```
+
+type `yes` and hit the return/ enter key.
+
+Then all the resources (which Terraform has state information for) should be removed.

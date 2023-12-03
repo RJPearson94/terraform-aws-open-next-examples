@@ -1,6 +1,10 @@
-# Single-zone example
+# Maintainance page default action example
 
-This example shows how you can deploy a single next.js app to AWS using open next
+This example shows how you can deploy a single next.js app to AWS that uses AWS WAF to block all traffic and show a maintainance page
+
+Credit to Paul L for this idea - https://repost.aws/questions/QUeXIw1g0hSxiF0BpugsT7aw/how-to-implement-the-maintenance-page-using-route-53-to-switch-between-cloudfront-distributions
+
+Credit to pitch-gist for the simple maintainance page used - https://gist.github.com/pitch-gist/2999707
 
 ## Building the example
 
@@ -24,6 +28,7 @@ To deploy the examples to AWS, you will need the following
 - An AWS Account
 - [Terragrunt](https://terragrunt.gruntwork.io/) v0.45.14 or above
 - [Terraform](https://terragrunt.gruntwork.io/) v1.4.0 or above
+- `credentials.yaml` file with the username and password set. See the [credentials template](./credentials.tpl.yaml) for the details
 
 To configure the AWS providers see the [provider documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication-and-configuration). 
 
