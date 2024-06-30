@@ -1,5 +1,5 @@
 terraform {
-  source          = "tfr://registry.terraform.io/RJPearson94/open-next/aws//modules/tf-aws-open-next-zone?version=3.0.0"
+  source          = "tfr://registry.terraform.io/RJPearson94/open-next/aws//modules/tf-aws-open-next-zone?version=3.0.2"
   include_in_copy = ["./.open-next"]
 }
 
