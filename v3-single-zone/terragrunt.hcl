@@ -1,5 +1,5 @@
 terraform {
-  source          = "tfr://registry.terraform.io/RJPearson94/open-next/aws//modules/tf-aws-open-next-zone?version=3.0.2"
+  source          = "tfr://registry.terraform.io/RJPearson94/open-next/aws//modules/tf-aws-open-next-zone?version=3.2.0"
   include_in_copy = ["./.open-next"]
 }
 
@@ -8,6 +8,20 @@ inputs = {
   
   folder_path = "./.open-next"
   s3_exclusion_regex = ".*\\.terragrunt*"
+
+  origin_timeouts = {
+    keepalive_timeout   = 60
+    read_timeout        = 60
+    connection_attempts = 2
+    connection_timeout  = 5
+  }
+
+  distribution = {
+    cache_policy = {
+      enable_accept_encoding_brotli = true
+      enable_accept_encoding_gzip = true
+    }
+  }
 
   continuous_deployment = {
     use = false

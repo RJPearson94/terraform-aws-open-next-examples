@@ -11,8 +11,8 @@ To be able to deploy the examples, you will need to install the dependencies and
 Please run the following commands
 
 ```shell
-yarn install
-yarn build:open-next
+pnpm install
+pnpm run build:open-next
 ```
 
 ## Deploying the examples
