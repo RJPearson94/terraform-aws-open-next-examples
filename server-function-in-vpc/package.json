@@ -1,0 +1,29 @@
+{
+  "name": "server-function-in-vpc",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build:open-next": "open-next build",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "next": "15.2.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.0",
+    "@opennextjs/aws": "3.5.0",
+    "@types/node": "ts5.8",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "postcss": "^8.5.3",
+    "typescript": "^5.8.2",
+    "tailwindcss": "^3.4.1",
+    "eslint": "^9.21.0",
+    "eslint-config-next": "15.2.0"
+  }
+}
